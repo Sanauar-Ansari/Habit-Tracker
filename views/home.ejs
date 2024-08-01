@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Habit Tracker App</title>
+    <script
+      src="https://kit.fontawesome.com/6866a8ccc0.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/CSS/home.css" />
+  </head>
+  <body>
+    <div class="home_container">
+      <!-- Heading -->
+      <div class="home_top_portion">
+        <img src="/IMAGES/tracker.png" alt="icon" />
+        <h1>Habit Tracker App</h1>
+      </div>
+      <!-- Add Habit Form -->
+      <div class="home_bottom_portion">
+        <p>Add A New Habit</p>
+        <hr />
+        <form action="/createHabit" method="post" class="form">
+          <label for="habit_name">Habit Name:</label>
+          <input type="text" name="habit_name" placeholder="Enter here..." />
+          <div class="add_button">
+            <button type="submit">Add</button>
+          </div>
+        </form>
+      </div>
+      <!-- Itrating the data to get result -->
+      <% data.forEach(x=>{ %>
+      <div class="content_display">
+        <div class="heading_and_delete">
+          <h3><%=x.title%></h3>
+          <a href="/delete-habit/?id=<%=x._id%>">
+            <img src="/IMAGES/bin.png" />
+          </a>
+        </div>
+        <div class="circular_days">
+          <table class="table">
+            <thead>
+              <tr>
+                <% for(let d of weeklyDates){ %>
+                <th>
+                  <div class="value-container">
+                    <span> <%= d%> </span>
+                  </div>
+                </th>
+                <%}%>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <% for(let d of weeklyDates){ %>
+
+                <td data-date="<%=d%>" data-id="<%=x._id%>" class="date">ok</td>
+
+                <%}%>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <% })%>
+    </div>
+    <script src="/JS/script.js"></script>
+  </body>
+</html>
